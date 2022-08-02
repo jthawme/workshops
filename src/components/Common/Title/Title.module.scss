@@ -1,0 +1,24 @@
+.title {
+  display: block;
+
+  font-size: var(--title-font-size);
+
+  margin: var(--title-margin, 0 0 0.6em);
+  padding: var(--title-padding, 0 0 0.1em);
+}
+
+.lined {
+  border-bottom: 1px solid currentColor;
+}
+
+.small {
+  --title-font-size: 21px;
+}
+
+.medium {
+  --title-font-size: 28px;
+}
+
+.large {
+  --title-font-size: 36px;
+}

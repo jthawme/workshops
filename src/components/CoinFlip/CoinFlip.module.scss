@@ -1,0 +1,16 @@
+.coin {
+  width: 100px;
+  height: 100px;
+
+  border-radius: 100%;
+  border: 2px solid currentColor;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+}
+
+.actions {
+  padding-top: 0.4em;
+}

@@ -18,23 +18,32 @@
   "dependencies": {
     "@mdx-js/mdx": "v1",
     "@mdx-js/react": "v1",
+    "@svgr/webpack": "^6.3.1",
+    "classnames": "^2.3.1",
     "gatsby": "^4.19.2",
     "gatsby-plugin-image": "^2.19.0",
     "gatsby-plugin-mdx": "^3.19.0",
     "gatsby-plugin-postcss": "^5.19.0",
     "gatsby-plugin-react-helmet": "^5.19.0",
+    "gatsby-plugin-sass": "^5.19.0",
     "gatsby-plugin-sharp": "^4.19.0",
+    "gatsby-plugin-svgr": "^3.0.0-beta.0",
     "gatsby-source-filesystem": "^4.19.0",
     "gatsby-transformer-sharp": "^4.19.0",
+    "normalize.css": "^8.0.1",
     "postcss": "^8.4.14",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
-    "react-helmet": "^6.1.0"
+    "react-helmet": "^6.1.0",
+    "react-markdown": "^8.0.3",
+    "remark-gfm": "^3.0.1",
+    "sass": "^1.54.0"
   },
   "devDependencies": {
     "@types/node": "^17.0.45",
     "@types/react": "^18.0.15",
     "@types/react-dom": "^18.0.6",
+    "@types/react-helmet": "^6.1.5",
     "typescript": "^4.7.4"
   }
 }
