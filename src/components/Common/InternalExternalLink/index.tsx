@@ -18,7 +18,11 @@ const InternalExternalLink: React.FC<InternalExternalLinkProps> = ({
   if (!to) {
     return <El {...props}>{children}</El>;
   }
-  if (to.startsWith("mailto:") || to.startsWith("http")) {
+  if (
+    to.startsWith("mailto:") ||
+    to.startsWith("http") ||
+    to.endsWith(".pdf")
+  ) {
     return (
       <a href={to} target="_blank" rel="noopener noreferrer" {...props}>
         {children}

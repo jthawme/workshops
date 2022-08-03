@@ -15,9 +15,19 @@ links:
 import { Dice } from "../../components/Dice";
 import { CoinFlip } from "../../components/CoinFlip";
 import { Title } from "../../components/Common/Title";
+import { Drawing } from "../../components/Drawing";
 
 <Title lined>Useful components</Title>
 
 <Dice num="1" canIncrement />
 
 <CoinFlip />
+
+<Drawing
+  aspect={594 / 840}
+  images={[
+    "/generative/spread1.png",
+    "/generative/spread2.png",
+    "/generative/spread3.png",
+  ]}
+/>

@@ -2,18 +2,31 @@ import { tickUpdate } from "./utils";
 
 export type UnlistenFunction = () => void;
 
-export const onWindowResize = (cb): UnlistenFunction => {
-  window.addEventListener("resize", cb, {
-    passive: true,
-  });
-
-  window.addEventListener("orientationchange", cb, {
-    passive: true,
-  });
+export const listenCb = (
+  el: HTMLElement | Window | Document,
+  evtType: string,
+  cb: (...args: any) => void,
+  opts: object = {}
+): UnlistenFunction => {
+  el.addEventListener(evtType, cb, opts);
 
   return () => {
-    window.removeEventListener("resize", cb);
-    window.removeEventListener("orientationchange", cb);
+    el.removeEventListener(evtType, cb);
+  };
+};
+
+export const onWindowResize = (cb): UnlistenFunction => {
+  const unlisten = [
+    listenCb(window, "resize", cb, {
+      passive: true,
+    }),
+    listenCb(window, "orientationchange", cb, {
+      passive: true,
+    }),
+  ];
+
+  return () => {
+    unlisten.forEach((u) => u());
   };
 };
 
@@ -21,7 +34,7 @@ export const registerBootlegVH = (): UnlistenFunction => {
   const setVh = () =>
     document.documentElement.style.setProperty(
       "--vh",
-      `${window.innerHeight / 100}px`,
+      `${window.innerHeight / 100}px`
     );
 
   const cb = tickUpdate(() => {
