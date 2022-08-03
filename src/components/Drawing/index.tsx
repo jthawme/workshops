@@ -51,10 +51,12 @@ const Drawing: React.FC<DrawingProps> = ({ images, aspect = 9 / 16 }) => {
       listenCb(canvas.current, "mouseleave", () => {
         isDrawing.current = false;
       }),
-      listenCb(canvas.current, "touchstart", () => {
+      listenCb(canvas.current, "touchstart", (e) => {
+        e.preventDefault();
         isDrawing.current = true;
       }),
-      listenCb(canvas.current, "touchend", () => {
+      listenCb(canvas.current, "touchend", (e) => {
+        e.preventDefault();
         isDrawing.current = false;
       }),
       listenCb(canvas.current, "touchcancel", () => {
@@ -65,6 +67,7 @@ const Drawing: React.FC<DrawingProps> = ({ images, aspect = 9 / 16 }) => {
         position.current.y = e.offsetY;
       }),
       listenCb(canvas.current, "touchmove", (e) => {
+        e.preventDefault();
         position.current.x = e.touches[0].offsetX;
         position.current.y = e.touches[0].offsetY;
       }),
