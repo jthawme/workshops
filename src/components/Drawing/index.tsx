@@ -53,6 +53,12 @@ const Drawing: React.FC<DrawingProps> = ({ images, aspect = 9 / 16 }) => {
       }),
       listenCb(canvas.current, "touchstart", (e) => {
         e.preventDefault();
+        const { x, y } = e.touches[0].target.getBoundingClientRect();
+
+        position.current.x = e.touches[0].clientX - x;
+        position.current.y = e.touches[0].clientY - y;
+
+        lastPosition = { ...position.current };
         isDrawing.current = true;
       }),
       listenCb(canvas.current, "touchend", (e) => {
@@ -68,15 +74,17 @@ const Drawing: React.FC<DrawingProps> = ({ images, aspect = 9 / 16 }) => {
       }),
       listenCb(canvas.current, "touchmove", (e) => {
         e.preventDefault();
-        position.current.x = e.touches[0].offsetX;
-        position.current.y = e.touches[0].offsetY;
+        const { x, y } = e.touches[0].target.getBoundingClientRect();
+
+        position.current.x = e.touches[0].clientX - x;
+        position.current.y = e.touches[0].clientY - y;
       }),
     ];
 
     let lastPosition: Coords = { ...position.current };
 
     const update = () => {
-      if (isDrawing.current && ctx) {
+      if (isDrawing.current && ctx && lastPosition) {
         ctx.lineWidth = 3;
         ctx.beginPath();
         ctx.moveTo(lastPosition.x, lastPosition.y);
@@ -139,10 +147,10 @@ const Drawing: React.FC<DrawingProps> = ({ images, aspect = 9 / 16 }) => {
       ctx?.clearRect(0, 0, width, height);
 
       if (currentImage && size) {
-        ctx?.drawImage(currentImage, 0, 0, size?.width, size?.height);
+        ctx?.drawImage(currentImage, 0, 0, size?.width, size?.width * aspect);
       }
     }
-  }, [canvas, currentImage, size]);
+  }, [canvas, currentImage, size, aspect]);
 
   useEffect(() => {
     if (!currentImage) {
@@ -152,9 +160,9 @@ const Drawing: React.FC<DrawingProps> = ({ images, aspect = 9 / 16 }) => {
 
       const ctx = canvas.current.getContext("2d");
 
-      ctx?.drawImage(currentImage, 0, 0, size?.width, size?.height);
+      ctx?.drawImage(currentImage, 0, 0, size?.width, size?.width * aspect);
     }
-  }, [currentImage, onClear, canvas, size]);
+  }, [currentImage, onClear, canvas, size, aspect]);
 
   return (
     <div ref={outer}>

@@ -1,0 +1,28 @@
+---
+title: Generative
+fullTitle: Generative Systems
+description: |
+  This workshop was held at LCC on the Graphic Design course. It was an introduction to creating work through process based design, collaborating through external forces.
+links:
+  - to: https://jt-generative-systems-workshop.netlify.app
+    text: Slides
+  - file: print-at-home.pdf
+    text: Workshop Sheet (print at home)
+---
+
+import { Dice } from "../../components/Dice";
+import { CoinFlip } from "../../components/CoinFlip";
+import { Title } from "../../components/Common/Title";
+import { Drawing } from "../../components/Drawing";
+
+import Image1 from "./001.png";
+import Image2 from "./002.png";
+import Image3 from "./003.png";
+
+<Title lined>Useful components</Title>
+
+<Dice num="1" canIncrement />
+
+<CoinFlip />
+
+<Drawing aspect={297 / 420} images={[Image1, Image2, Image3]} />
